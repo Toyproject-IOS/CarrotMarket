@@ -13,12 +13,14 @@ class CMTabBarController: UITabBarController {
         super.viewDidLoad()
         
         let firstNC = UINavigationController.init(rootViewController: CarrotViewController(bgColor: UIColor.white))
-        
         self.viewControllers = [firstNC]
-        
         let firstTabBarItem = UITabBarItem(title: "home", image: UIImage(named: "home"), tag: 0)
-        
         firstNC.tabBarItem = firstTabBarItem
+        setUITabBar()
     }
     
+    func setUITabBar() {
+        UITabBar.clearShadow()
+        tabBar.layer.applySketchShadow()
+    }
 }
