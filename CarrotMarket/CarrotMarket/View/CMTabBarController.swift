@@ -16,6 +16,7 @@ class CMTabBarController: UITabBarController {
         self.viewControllers = [firstNC]
         let firstTabBarItem = UITabBarItem(title: "home", image: UIImage(named: "home"), tag: 0)
         firstNC.tabBarItem = firstTabBarItem
+        
         setUITabBar()
     }
     
