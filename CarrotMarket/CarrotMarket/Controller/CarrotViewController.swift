@@ -35,6 +35,7 @@ class CarrotViewController: UIViewController {
         setConstraints()
         setConfigureTableView()
         configureAddIconAlarm()
+        configureAddIconList()
         configureAddIconSearch()
     }
     
@@ -63,6 +64,10 @@ class CarrotViewController: UIViewController {
         rightNavigationBarItem.addIconAlarm(self, #selector(handleIconAlarm))
     }
     
+    func configureAddIconList() {
+        rightNavigationBarItem.addIconList(self, #selector(handleIconList))
+    }
+    
     func configureAddIconSearch() {
         rightNavigationBarItem.addIconSearch(self, #selector(handleSearch))
     }
@@ -71,9 +76,14 @@ class CarrotViewController: UIViewController {
         debugPrint("handleIconAlarm")
     }
     
+    @objc func handleIconList() {
+        debugPrint("handleIconList")
+    }
+    
     @objc func handleSearch() {
         debugPrint("handleSearch")
     }
+    
     
     func tableViewConstratins() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
