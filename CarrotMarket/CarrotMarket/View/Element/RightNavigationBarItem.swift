@@ -51,9 +51,22 @@ class RightNavigationBarItem {
         return iconList
     }()
     
-    func addIconAlarm(_ from: UIViewController,
-                      _ selector: Selector) {
-        iconAlarm.addTarget(from, action: selector, for: .touchUpInside)
+    func addIconAlarm(
+        _ from: UIViewController,
+        _ selector: Selector) {
+        iconAlarm.addTarget(
+            from, action: selector,
+            for: .touchUpInside
+        )
+    }
+    
+    func addIconSearch(
+        _ from: UIViewController,
+        _ selector: Selector) {
+        iconSearch.addTarget(
+            from, action: selector,
+            for: .touchUpInside
+        )
     }
     
 }
