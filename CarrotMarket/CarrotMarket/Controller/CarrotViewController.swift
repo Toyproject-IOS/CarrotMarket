@@ -10,6 +10,27 @@ import UIKit
 private let CMCellId = "CMCellId"
 class CarrotViewController: UIViewController {
     
+    let alarmTopBarButton: UIButton = {
+      let image = UIImage(named: "iconAlarm")
+      let button = UIButton(type: .custom)
+      button.setImage(image, for: .normal)
+      return button
+    }()
+    
+    let searchTopBarButton: UIButton = {
+      let image = UIImage(named: "iconSearch")
+      let button = UIButton(type: .custom)
+      button.setImage(image, for: .normal)
+      return button
+    }()
+    
+    let listTopBarButton: UIButton = {
+      let image = UIImage(named: "iconList")
+      let button = UIButton(type: .custom)
+      button.setImage(image, for: .normal)
+      return button
+    }()
+    
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         
