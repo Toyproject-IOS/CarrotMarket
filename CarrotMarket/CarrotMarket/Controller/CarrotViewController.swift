@@ -10,8 +10,6 @@ import UIKit
 private let CMCellId = "CMCellId"
 class CarrotViewController: UIViewController {
     
-    let rightNavigationBarItem = RightNavigationBarItem()
-    
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         
@@ -30,20 +28,9 @@ class CarrotViewController: UIViewController {
     
     func setup() {
         view.backgroundColor = .white
-        setUIBarButtonItem()
         addViews()
         setConstraints()
         setConfigureTableView()
-        configureAddIconAlarm()
-        configureAddIconList()
-        configureAddIconSearch()
-    }
-    
-    func setUIBarButtonItem() {
-        let iconAlarm = UIBarButtonItem(customView: rightNavigationBarItem.iconAlarm)
-        let iconList = UIBarButtonItem(customView: rightNavigationBarItem.iconList)
-        let iconSearch = UIBarButtonItem(customView: rightNavigationBarItem.iconSearch)
-        navigationItem.rightBarButtonItems = [iconAlarm,iconList,iconSearch]
     }
     
     func addViews() {
@@ -59,31 +46,6 @@ class CarrotViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
-    func configureAddIconAlarm() {
-        rightNavigationBarItem.addIconAlarm(self, #selector(handleIconAlarm))
-    }
-    
-    func configureAddIconList() {
-        rightNavigationBarItem.addIconList(self, #selector(handleIconList))
-    }
-    
-    func configureAddIconSearch() {
-        rightNavigationBarItem.addIconSearch(self, #selector(handleSearch))
-    }
-    
-    @objc func handleIconAlarm() {
-        debugPrint("handleIconAlarm")
-    }
-    
-    @objc func handleIconList() {
-        debugPrint("handleIconList")
-    }
-    
-    @objc func handleSearch() {
-        debugPrint("handleSearch")
-    }
-    
     
     func tableViewConstratins() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
