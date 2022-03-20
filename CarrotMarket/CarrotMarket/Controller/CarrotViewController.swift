@@ -10,6 +10,27 @@ import UIKit
 private let CMCellId = "CMCellId"
 class CarrotViewController: UIViewController {
     
+    let alarmTopBarButton: UIButton = {
+      let image = UIImage(named: "iconAlarm")
+      let button = UIButton(type: .custom)
+      button.setImage(image, for: .normal)
+      return button
+    }()
+    
+    let searchTopBarButton: UIButton = {
+      let image = UIImage(named: "iconSearch")
+      let button = UIButton(type: .custom)
+      button.setImage(image, for: .normal)
+      return button
+    }()
+    
+    let listTopBarButton: UIButton = {
+      let image = UIImage(named: "iconList")
+      let button = UIButton(type: .custom)
+      button.setImage(image, for: .normal)
+      return button
+    }()
+    
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         
@@ -31,6 +52,7 @@ class CarrotViewController: UIViewController {
         addViews()
         setConstraints()
         setConfigureTableView()
+        setConfigureBarButtonItems()
     }
     
     func addViews() {
@@ -45,6 +67,13 @@ class CarrotViewController: UIViewController {
         tableView.register(CMCell.self, forCellReuseIdentifier: CMCellId)
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func setConfigureBarButtonItems() {
+        let iconAlarm = UIBarButtonItem(customView: alarmTopBarButton)
+        let iconList = UIBarButtonItem(customView: searchTopBarButton)
+        let iconSearch = UIBarButtonItem(customView: listTopBarButton)
+        navigationItem.rightBarButtonItems = [iconAlarm,iconList,iconSearch]
     }
     
     func tableViewConstratins() {
