@@ -52,6 +52,7 @@ class CarrotViewController: UIViewController {
         addViews()
         setConstraints()
         setConfigureTableView()
+        setConfigureBarButtonItems()
     }
     
     func addViews() {
@@ -66,6 +67,13 @@ class CarrotViewController: UIViewController {
         tableView.register(CMCell.self, forCellReuseIdentifier: CMCellId)
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    func setConfigureBarButtonItems() {
+        let iconAlarm = UIBarButtonItem(customView: alarmTopBarButton)
+        let iconList = UIBarButtonItem(customView: searchTopBarButton)
+        let iconSearch = UIBarButtonItem(customView: listTopBarButton)
+        navigationItem.rightBarButtonItems = [iconAlarm,iconList,iconSearch]
     }
     
     func tableViewConstratins() {
