@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Popover
 private let CMCellId = "CMCellId"
 class CarrotViewController: UIViewController {
     
@@ -31,7 +31,7 @@ class CarrotViewController: UIViewController {
       return button
     }()
     
-    let ereaTopBarButton: UIButton = {
+    let areaTopBarButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("테스트동", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -78,8 +78,17 @@ class CarrotViewController: UIViewController {
         let iconSearch = UIBarButtonItem(customView: listTopBarButton)
         navigationItem.rightBarButtonItems = [iconAlarm,iconList,iconSearch]
         
-        let area = UIBarButtonItem(customView: ereaTopBarButton)
+        let area = UIBarButtonItem(customView: areaTopBarButton)
         navigationItem.leftBarButtonItem = area
+        areaTopBarButton.addTarget(self, action: #selector(handleAreaTopBarButton), for: .touchUpInside)
+    }
+    
+    @objc func handleAreaTopBarButton() {
+        let rect = areaTopBarButton.convert(areaTopBarButton.bounds, to: self.alarmTopBarButton)
+        let point = CGPoint(x: rect.midX, y: rect.maxY)
+        let popover = Popover(options: nil, showHandler: nil, dismissHandler: nil)
+        let aView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width / 2, height: 200))
+        popover.show(aView, point: point)
     }
     
     func setNavigationBarAppearance() {
