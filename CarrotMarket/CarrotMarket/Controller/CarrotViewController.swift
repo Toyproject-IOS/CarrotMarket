@@ -37,11 +37,6 @@ class CarrotViewController: UIViewController {
         return tableView
     }()
     
-    convenience init(bgColor: UIColor) {
-        self.init()
-        self.view.backgroundColor = bgColor
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -53,6 +48,7 @@ class CarrotViewController: UIViewController {
         setConstraints()
         setConfigureTableView()
         setConfigureBarButtonItems()
+        setNavigationBarAppearance()
     }
     
     func addViews() {
@@ -74,6 +70,15 @@ class CarrotViewController: UIViewController {
         let iconList = UIBarButtonItem(customView: searchTopBarButton)
         let iconSearch = UIBarButtonItem(customView: listTopBarButton)
         navigationItem.rightBarButtonItems = [iconAlarm,iconList,iconSearch]
+    }
+    
+    func setNavigationBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .white
+        appearance.shadowColor = .lightGray
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
     func tableViewConstratins() {
