@@ -31,6 +31,13 @@ class CarrotViewController: UIViewController {
       return button
     }()
     
+    let ereaTopBarButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle("테스트동", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        return button
+    }()
+    
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         
