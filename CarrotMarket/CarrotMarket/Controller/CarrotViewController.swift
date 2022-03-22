@@ -77,6 +77,9 @@ class CarrotViewController: UIViewController {
         let iconList = UIBarButtonItem(customView: searchTopBarButton)
         let iconSearch = UIBarButtonItem(customView: listTopBarButton)
         navigationItem.rightBarButtonItems = [iconAlarm,iconList,iconSearch]
+        
+        let area = UIBarButtonItem(customView: ereaTopBarButton)
+        navigationItem.leftBarButtonItem = area
     }
     
     func setNavigationBarAppearance() {
