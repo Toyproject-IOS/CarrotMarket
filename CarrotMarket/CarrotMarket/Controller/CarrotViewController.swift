@@ -84,7 +84,7 @@ class CarrotViewController: UIViewController {
     }
     
     @objc func handleAreaTopBarButton() {
-        let rect = areaTopBarButton.convert(areaTopBarButton.bounds, to: self.alarmTopBarButton)
+        let rect = areaTopBarButton.convert(areaTopBarButton.bounds, to: self.view)
         let point = CGPoint(x: rect.midX, y: rect.maxY)
         let popover = Popover(options: nil, showHandler: nil, dismissHandler: nil)
         let aView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width / 2, height: 200))
