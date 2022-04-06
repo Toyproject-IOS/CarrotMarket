@@ -38,10 +38,10 @@ class CarrotViewController: UIViewController {
         return button
     }()
     
-    let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero)
+    let mainTableView: UITableView = {
+        let mainTableView = UITableView(frame: .zero)
         
-        return tableView
+        return mainTableView
     }()
     
     override func viewDidLoad() {
@@ -53,23 +53,23 @@ class CarrotViewController: UIViewController {
         view.backgroundColor = .white
         addViews()
         setConstraints()
-        setConfigureTableView()
+        setupMainTableView()
         setConfigureBarButtonItems()
         setNavigationBarAppearance()
     }
     
     func addViews() {
-        view.addSubview(tableView)
+        view.addSubview(mainTableView)
     }
     
     func setConstraints() {
-        tableViewConstratins()
+        mainTableViewConstraints()
     }
     
-    func setConfigureTableView() {
-        tableView.register(CMCell.self, forCellReuseIdentifier: CMCellId)
-        tableView.delegate = self
-        tableView.dataSource = self
+    func setupMainTableView() {
+        mainTableView.register(CMCell.self, forCellReuseIdentifier: CMCellId)
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
     }
     
     func setConfigureBarButtonItems() {
@@ -100,12 +100,12 @@ class CarrotViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    func tableViewConstratins() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    func mainTableViewConstraints() {
+        mainTableView.translatesAutoresizingMaskIntoConstraints = false
+        mainTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        mainTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        mainTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
 }
 
