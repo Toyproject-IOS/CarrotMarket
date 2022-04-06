@@ -7,7 +7,9 @@
 
 import UIKit
 import Popover
+
 private let CMCellId = "CMCellId"
+private let AreaCellId = "AreaCellId"
 class CarrotViewController: UIViewController {
     
     let alarmTopBarButton: UIButton = {
@@ -38,10 +40,15 @@ class CarrotViewController: UIViewController {
         return button
     }()
     
-    let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero)
+    let mainTableView: UITableView = {
+        let mainTableView = UITableView(frame: .zero)
         
-        return tableView
+        return mainTableView
+    }()
+    
+    let areaTableView: UITableView = {
+        let areaTabelView = UITableView(frame: CGRect(x: 0, y: 0, width: 150, height: 130))
+        return areaTabelView
     }()
     
     override func viewDidLoad() {
@@ -53,23 +60,36 @@ class CarrotViewController: UIViewController {
         view.backgroundColor = .white
         addViews()
         setConstraints()
-        setConfigureTableView()
+        setupMainTableView()
+        setupAreaTableView()
         setConfigureBarButtonItems()
         setNavigationBarAppearance()
     }
     
     func addViews() {
-        view.addSubview(tableView)
+        view.addSubview(mainTableView)
     }
     
     func setConstraints() {
-        tableViewConstratins()
+        mainTableViewConstraints()
     }
     
-    func setConfigureTableView() {
-        tableView.register(CMCell.self, forCellReuseIdentifier: CMCellId)
-        tableView.delegate = self
-        tableView.dataSource = self
+    func setupMainTableView() {
+        mainTableView.register(CMCell.self, forCellReuseIdentifier: CMCellId)
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
+        mainTableView.separatorInset.left = 0
+        mainTableView.isScrollEnabled = true
+        mainTableView.allowsSelection = true
+    }
+    
+    func setupAreaTableView() {
+        areaTableView.register(AreaCell.self, forCellReuseIdentifier: AreaCellId)
+        areaTableView.delegate = self
+        areaTableView.dataSource = self
+        areaTableView.separatorInset.left = 0
+        areaTableView.isScrollEnabled = false
+        areaTableView.allowsSelection = false
     }
     
     func setConfigureBarButtonItems() {
@@ -87,8 +107,7 @@ class CarrotViewController: UIViewController {
         let rect = areaTopBarButton.convert(areaTopBarButton.bounds, to: self.view)
         let point = CGPoint(x: rect.midX, y: rect.maxY)
         let popover = Popover(options: nil, showHandler: nil, dismissHandler: nil)
-        let aView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width / 2, height: 200))
-        popover.show(aView, point: point)
+        popover.show(areaTableView, point: point)
     }
     
     func setNavigationBarAppearance() {
@@ -100,12 +119,12 @@ class CarrotViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    func tableViewConstratins() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    func mainTableViewConstraints() {
+        mainTableView.translatesAutoresizingMaskIntoConstraints = false
+        mainTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        mainTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        mainTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        mainTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
 }
 
