@@ -13,24 +13,24 @@ private let AreaCellId = "AreaCellId"
 class CarrotViewController: UIViewController {
     
     let alarmTopBarButton: UIButton = {
-      let image = UIImage(named: "iconAlarm")
-      let button = UIButton(type: .custom)
-      button.setImage(image, for: .normal)
-      return button
+        let image = UIImage(named: "iconAlarm")
+        let button = UIButton(type: .custom)
+        button.setImage(image, for: .normal)
+        return button
     }()
     
     let searchTopBarButton: UIButton = {
-      let image = UIImage(named: "iconSearch")
-      let button = UIButton(type: .custom)
-      button.setImage(image, for: .normal)
-      return button
+        let image = UIImage(named: "iconSearch")
+        let button = UIButton(type: .custom)
+        button.setImage(image, for: .normal)
+        return button
     }()
     
     let listTopBarButton: UIButton = {
-      let image = UIImage(named: "iconList")
-      let button = UIButton(type: .custom)
-      button.setImage(image, for: .normal)
-      return button
+        let image = UIImage(named: "iconList")
+        let button = UIButton(type: .custom)
+        button.setImage(image, for: .normal)
+        return button
     }()
     
     let areaTopBarButton: UIButton = {
@@ -137,14 +137,47 @@ extension CarrotViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        return 3
+        switch tableView {
+        case areaTableView:
+            return 3
+        case mainTableView:
+            return 10
+        default:
+            return 0
+        }
     }
     
     func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        return UITableViewCell()
+        switch tableView {
+        case areaTableView:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: AreaCellId,
+                for: indexPath) as? AreaCell else { return UITableViewCell() }
+            return cell
+        case mainTableView:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: CMCellId,
+                for: indexPath) as? CMCell else { return UITableViewCell() }
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
     
+    func tableView(
+      _ tableView: UITableView,
+      heightForRowAt indexPath: IndexPath
+    ) -> CGFloat {
+      switch tableView{
+      case areaTableView:
+        return 30
+      case mainTableView:
+        return 135
+      default:
+        return 0
+      }
+    }
 }
