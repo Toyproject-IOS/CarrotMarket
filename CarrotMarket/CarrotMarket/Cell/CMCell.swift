@@ -12,8 +12,19 @@ class CMCell: UITableViewCell {
     let mainImageView: UIImageView = {
         let image = UIImage(named: "home")
         let iv = UIImageView(image: image)
+        iv.backgroundColor = .red
         iv.layer.cornerRadius = 10
         return iv
+    }()
+    
+    let mainTitleLabel: UILabel = {
+        let lb = UILabel()
+        lb.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        lb.textAlignment = .left
+        lb.backgroundColor = .systemPink
+        lb.numberOfLines = 2
+        lb.text = "메인 라벨 입니다.메인 라벨 입니다.메인 라벨 입니다.메인 라벨 입니다.메인 라벨 입니다.메인 라벨 입니다.메인 라벨 입니다.메인 라벨 입니다.메인 라벨 입니다.메인 라벨 입니다.메인 라벨 입니다.메인 라벨 입니다."
+        return lb
     }()
     
     override init(
@@ -35,10 +46,12 @@ class CMCell: UITableViewCell {
     
     func addViews() {
         addSubview(mainImageView)
+        addSubview(mainTitleLabel)
     }
     
     func setConstraints() {
         mainImageViewConstraints()
+        mainTitleLabelConstraints()
     }
     
     // MARK: - Constraints
@@ -50,4 +63,11 @@ class CMCell: UITableViewCell {
       mainImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
     }
     
+    private func mainTitleLabelConstraints() {
+        mainTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        mainTitleLabel.leadingAnchor.constraint(equalTo: mainImageView.trailingAnchor, constant: 10).isActive = true
+        mainTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        mainTitleLabel.topAnchor.constraint(equalTo: mainImageView.topAnchor).isActive = true
+        mainTitleLabel.heightAnchor.constraint(equalTo: mainImageView.heightAnchor, multiplier: 0.4).isActive = true
+    }
 }
